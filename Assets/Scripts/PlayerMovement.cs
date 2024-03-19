@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rb;
     [SerializeField] float speed = 1;
+    [SerializeField] float jumpPower = 500;
     float horizontalValue;
 
     Animator animator;
@@ -17,9 +18,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
 
     bool facingRight = true;
-   [SerializeField] bool isGrounded = false;
+    bool jump ;
+   [SerializeField] bool isGrounded ;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -29,15 +31,26 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
       
-        horizontalValue = Input.GetAxisRaw("Horizontal");
+        animator.SetFloat("yVelocity", rb.velocity.y); //Set yVelocity into animator
+        horizontalValue = Input.GetAxisRaw("Horizontal"); //Store Horizontal value
 
+        if(Input.GetButtonDown("Jump")) //Press "Jump"
+        {
+            jump = true;
+            animator.SetBool("Jump", true);
+        }
+        else if(Input.GetButtonUp("Jump"))
+            jump = false;
+        
+
+        
         
     }
 
     void FixedUpdate()
     {
         GroundCheck();
-        Move(horizontalValue);
+        Move(horizontalValue, jump);
     }
 
     void GroundCheck()
@@ -47,10 +60,22 @@ public class PlayerMovement : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider.position, groundCheckRadius, groundLayer);
         if (colliders.Length > 0)
             isGrounded = true;
+
+        animator.SetBool("Jump", !isGrounded);
     }
 
-    void Move(float dir)
+    void Move(float dir, bool jumpFlag)
     {
+
+        //If player is grounded & press "Jump"
+        if (isGrounded && jumpFlag)
+        {
+            //isGrounded = false;
+            jumpFlag = false;
+            //Add jump force
+            rb.AddForce(new Vector2(0f, jumpPower));
+        }
+
         
         float xVal = dir * speed * 100 * Time.fixedDeltaTime; //Set value of x using dir & speed
         Vector2 targetVelocity = new Vector2(xVal, rb.velocity.y); //Create Vec2 for velocity
@@ -72,6 +97,8 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(rb.velocity.x); // 0 = Idle ; 6 = Walking
 
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x)); //Set the float xVelocity according to x value of RigidBody2D velocity
+        
+
 
     }
 }

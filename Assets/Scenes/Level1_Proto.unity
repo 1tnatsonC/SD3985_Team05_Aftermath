@@ -189,7 +189,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 10.264327, y: -2.5574183}
+  m_Offset: {x: 10.275087, y: -2.5574183}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -200,7 +200,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 13.409288, y: 1.9486771}
+  m_Size: {x: 13.301689, y: 1.9486771}
   m_EdgeRadius: 0
 --- !u!483693784 &118384641
 TilemapRenderer:
@@ -3354,7 +3354,7 @@ Transform:
   m_GameObject: {fileID: 1632680059}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.27, y: -0.98, z: 0}
+  m_LocalPosition: {x: -8.27, y: -2.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3412,7 +3412,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8348ae3ef818cc74995098139213333c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3436,6 +3436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  jumpPower: 150
   groundCheckCollider: {fileID: 812726306}
   groundLayer:
     serializedVersion: 2
@@ -3924,7 +3925,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 6.3304653, y: 3.122035}
+  m_Offset: {x: 6.3304653, y: 4.2168207}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3935,7 +3936,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 32.79935, y: 0.29046154}
+  m_Size: {x: 32.79935, y: 0.5051255}
   m_EdgeRadius: 0
 --- !u!483693784 &2144713150
 TilemapRenderer:
